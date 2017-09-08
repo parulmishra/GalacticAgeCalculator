@@ -15,7 +15,7 @@ _This application calculates human ages on different planets on the basis of bir
 ## Setup/Installation Requirements
 
 * This website will be hosted on GitHub
-* https://github.com/parulmishra/OnlineShop
+* https://github.com/parulmishra/GalacticAgeCalculator
 * _Clone this repository_
 
 ## Known Bugs
