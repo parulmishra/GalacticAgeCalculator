@@ -37,91 +37,75 @@ export class Person
 	}
 	calculateMercuryAge(birth_month,birth_day,birth_year)
 	{
-		let earthAge = calculateCurrentAge(birth_month,birth_day,birth_year);
+		let earthAge = this.calculateEarthAge(birth_month,birth_day,birth_year);
 		let mercuryAge = earthAge/(24*60*60*365*0.24); 
 		return mercuryAge.toFixed(2);
 	}	
 	calculateVenusAge(birth_month,birth_day,birth_year)
 	{
-		let earthAge = calculateCurrentAge(birth_month,birth_day,birth_year);
+		let earthAge = this.calculateEarthAge(birth_month,birth_day,birth_year);
 		let venusAge = earthAge/(24*60*60*365*0.62); 
 		return venusAge.toFixed(2);
 	}	
 	calculateMarsAge(birth_month,birth_day,birth_year)
 	{
-		let earthAge = calculateCurrentAge(birth_month,birth_day,birth_year);
+		let earthAge = this.calculateEarthAge(birth_month,birth_day,birth_year);
 		let marsAge = earthAge/(24*60*60*365*1.88); 
 		return marsAge.toFixed(2);
 	}	
 	calculateJupiterAge(birth_month,birth_day,birth_year)
 	{
-		let earthAge = calculateCurrentAge(birth_month,birth_day,birth_year);
+		let earthAge = this.calculateEarthAge(birth_month,birth_day,birth_year);
 		let jupiterAge = earthAge/(24*60*60*365*11.86); 
 		return jupiterAge.toFixed(2);
 	}
-	calculateLifeExpectancy(birth_month,birth_day,birth_year,planet,country)
+	calculateLifeExpectancyForEarth(birth_month,birth_day,birth_year,country)
 	{
-		var lifeLeft = 0.0;
-		var planetAge = 0.0;
-		if(planet == "mercury")
-		{
-			planetAge = calculateMercuryAge(birth_month,birth_day,birth_year);
-		}
-		if(planet == "earth")
-		{
-			planetAge = calculateEarthAgeAge(birth_month,birth_day,birth_year);
-		}
-		if(planet == "mars")
-		{
-			planetAge = calculateMarsAge(birth_month,birth_day,birth_year);
-		}
-		if(planet == "jupiter")
-		{
-			planetAge = calculateJupiterAge(birth_month,birth_day,birth_year);
-		}
-		if(planet == "venus")
-		{
-			planetAge = calculateVenusAge(birth_month,birth_day,birth_year);
-		}
-		if(this.expectancy.hasOwnProperty(country))
-		{
-			let temp = target[key];
-			lifeLeft = temp - planetAge;
-		}
+		var planetAge = this.calculateEarthAge(birth_month,birth_day,birth_year);
+		var lifeLeft = this.expectancy["earth"] - planetAge;
 		return lifeLeft;
 	}
+	calculateLifeExpectancyForMercury(birth_month,birth_day,birth_year,country)
+	{
+		var planetAge = this.calculateMercuryAge(birth_month,birth_day,birth_year);
+		var lifeLeft = this.expectancy["mercury"] - planetAge;
+		return lifeLeft;
+	}
+	calculateLifeExpectancyForMars(birth_month,birth_day,birth_year,country)
+	{
+		var planetAge = this.calculateMarsAge(birth_month,birth_day,birth_year);
+		var lifeLeft = this.expectancy["mars"] - planetAge;
+		return lifeLeft;
+	}
+	calculateLifeExpectancyForVenus(birth_month,birth_day,birth_year,country)
+	{
+		var planetAge = this.calculateVenusAge(birth_month,birth_day,birth_year);
+		var lifeLeft = this.expectancy["venus"] - planetAge;
+		return lifeLeft;
+	}
+	calculateLifeExpectancyForJupiter(birth_month,birth_day,birth_year,country)
+	{
+		var planetAge = this.calculateJupiterAge(birth_month,birth_day,birth_year);
+		var lifeLeft = this.expectancy["jupiter"] - planetAge;
+		return lifeLeft;
+	}
+
 	calculateAges(birth_month,birth_day,birth_year)
 	{
 		var ages = [];
 		
-		var earth_age = calculateEarthAgeAge(birth_month,birth_day,birth_year);
+		var earth_age = this.calculateEarthAge(birth_month,birth_day,birth_year);
 		ages.push(earth_age);
-		var mercury_age = calculateMercuryAge(birth_month,birth_day,birth_year);
+		var mercury_age = this.calculateMercuryAge(birth_month,birth_day,birth_year);
 		ages.push(mercury_age);
-		var mars_age = calculateMarsAge(birth_month,birth_day,birth_year);		
+		var mars_age = this.calculateMarsAge(birth_month,birth_day,birth_year);		
 		ages.push(mars_age);
-		var venus_age = calculateVenusAge(birth_month,birth_day,birth_year);
+		var venus_age = this.calculateVenusAge(birth_month,birth_day,birth_year);
 		ages.push(venus_age);
-		var jupiter_age = calculateJupiterAge(birth_month,birth_day,birth_year);
+		var jupiter_age = this.calculateJupiterAge(birth_month,birth_day,birth_year);
 		ages.push(jupiter_age);
 		
 		return ages;
 	}
-	calculateLives(birth_month,birth_day,birth_year,country)
-	{
-		var lifeLeft = [];
-		
-		var earthLifeLeft = calculateLifeExpectancy(birth_month,birth_day,birth_year,earth,country);
-		lifeLeft["earth"] = earthLifeLeft;
-		var mercuryLifeLeft = calculateLifeExpectancy(birth_month,birth_day,birth_year,mercury,country);
-		lifeLeft["mercury"] = mercuryLifeLeft;
-		var marsLifeLeft = calculateLifeExpectancy(birth_month,birth_day,birth_year,mars,country);
-		lifeLeft["mars"] = marsLifeLeft;;
-		var venusLifeLeft = calculateLifeExpectancy(birth_month,birth_day,birth_year,venus,country);
-		lifeLeft["venus"] = venusLifeLeft;
-		var jupiterLifeLeft = calculateLifeExpectancy(birth_month,birth_day,birth_year,jupiter,country);
-		lifeLeft[jupiter] = jupiterLifeLeft;
-		
-		return lifeLeft;
-	}
+	
 }
