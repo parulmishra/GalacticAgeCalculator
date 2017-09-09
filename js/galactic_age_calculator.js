@@ -15,6 +15,9 @@ export class Person
 		this.expectancy["iceland"] = 82.7;
 		this.expectancy["india"] = 68.3;
 		this.expectancy["usa"] =78;
+	}
+	GetExpectancy(key) {
+    return this.expectancy[key];
 	}	
 	calculateEarthAge(birth_month,birth_day,birth_year)
 	{
@@ -62,32 +65,43 @@ export class Person
 	calculateLifeExpectancyForEarth(birth_month,birth_day,birth_year,country)
 	{
 		var planetAge = this.calculateEarthAge(birth_month,birth_day,birth_year);
-		var lifeLeft = this.expectancy["earth"] - planetAge;
+		console.log(country + "," + this.GetExpectancy(country));
+		var lifeLeft = this.GetExpectancy(country)*(365*24*60*60) - planetAge;
+		if(lifeLeft <= 0)
+			lifeLeft = 0;
 		return lifeLeft;
 	}
 	calculateLifeExpectancyForMercury(birth_month,birth_day,birth_year,country)
 	{
 		var planetAge = this.calculateMercuryAge(birth_month,birth_day,birth_year);
-		var lifeLeft = this.expectancy["mercury"] - planetAge;
-		return lifeLeft;
+		var lifeLeft = this.expectancy[country]/0.24 - planetAge;
+		if(lifeLeft <= 0)
+			lifeLeft = 0;
+		return lifeLeft.toFixed(2);
 	}
 	calculateLifeExpectancyForMars(birth_month,birth_day,birth_year,country)
 	{
 		var planetAge = this.calculateMarsAge(birth_month,birth_day,birth_year);
-		var lifeLeft = this.expectancy["mars"] - planetAge;
-		return lifeLeft;
+		var lifeLeft = this.expectancy[country]/1.88 - planetAge;
+		if(lifeLeft <= 0)
+			lifeLeft = 0;
+		return lifeLeft.toFixed(2);
 	}
 	calculateLifeExpectancyForVenus(birth_month,birth_day,birth_year,country)
 	{
 		var planetAge = this.calculateVenusAge(birth_month,birth_day,birth_year);
-		var lifeLeft = this.expectancy["venus"] - planetAge;
-		return lifeLeft;
+		var lifeLeft = this.expectancy[country]/0.62 - planetAge;
+		if(lifeLeft <= 0)
+			lifeLeft = 0;
+		return lifeLeft.toFixed(2);
 	}
 	calculateLifeExpectancyForJupiter(birth_month,birth_day,birth_year,country)
 	{
 		var planetAge = this.calculateJupiterAge(birth_month,birth_day,birth_year);
-		var lifeLeft = this.expectancy["jupiter"] - planetAge;
-		return lifeLeft;
+		var lifeLeft = this.expectancy[country]/11.86 - planetAge;
+		if(lifeLeft <= 0)
+			lifeLeft = 0;
+		return lifeLeft.toFixed(2);
 	}
 
 	calculateAges(birth_month,birth_day,birth_year)

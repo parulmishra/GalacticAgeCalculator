@@ -13,7 +13,7 @@ $(document).ready(function(){
 		var country = $("#country option:selected").val();
 		
 		var newPerson = new Person(month,day,year,country);
-		
+		console.log("country : " + country);
 		var ages = newPerson.calculateAges(month,day,year);
 		
 		$("#earthage").html("Your Age on Earth is : " + ages[0] + " seconds");
