@@ -18,14 +18,14 @@ var Person = exports.Person = function () {
 		this.year = year;
 		this.country = country;
 		this.expectancy = {};
-		this.expectancy.Add("japan", 83.7);
-		this.expectancy.Add("switzerland", 83.4);
-		this.expectancy.Add("singapore", 83.1);
-		this.expectancy.Add("australia", 82.8);
-		this.expectancy.Add("spain", 82.8);
-		this.expectancy.Add("iceland", 82.7);
-		this.expectancy.Add("india", 68.3);
-		this.expectancy.Add("usa", 78);
+		this.expectancy["japan"] = 83.7;
+		this.expectancy["switzerland"] = 83.4;
+		this.expectancy["singapore"] = 83.1;
+		this.expectancy["australia"] = 82.8;
+		this.expectancy["spain"] = 82.8;
+		this.expectancy["iceland"] = 82.7;
+		this.expectancy["india"] = 68.3;
+		this.expectancy["usa"] = 78;
 	}
 
 	_createClass(Person, [{
