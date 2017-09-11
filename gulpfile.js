@@ -1,12 +1,12 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var uglify = require('gulp-uglify');
-var utilities = require('gulp-util');
-var del = require('del');
-var jshint = require('gulp-jshint');
-var lib = require('bower-files')({
+const gulp = require('gulp');
+const concat = require('gulp-concat');
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
+const uglify = require('gulp-uglify');
+const utilities = require('gulp-util');
+const del = require('del');
+const jshint = require('gulp-jshint');
+const lib = require('bower-files')({
   "overrides":{
     "bootstrap" : {
       "main": [
@@ -17,10 +17,10 @@ var lib = require('bower-files')({
     }
   }
 });
-var browserSync = require('browser-sync').create();
+const browserSync = require('browser-sync').create();
 
-var buildProduction = utilities.env.production;
-var babelify = require("babelify");
+const buildProduction = utilities.env.production;
+const babelify = require("babelify");
 
 gulp.task('concatInterface', function(){
   return gulp.src(['./js/*-interface.js'])
@@ -48,7 +48,7 @@ gulp.task("clean", function(){
 });
 
 gulp.task('jshint', function(){
-  return gulp.src(['js/*.js'])
+  return gulp.src(['js/*.js','spec/*.js'])
   .pipe(jshint())
   .pipe(jshint.reporter('default'));
 });
